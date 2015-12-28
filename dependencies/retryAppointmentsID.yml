@@ -1,0 +1,22 @@
+---
+  scenarios:
+    run:
+      store-cache: false
+      requests:
+        - url: ${__P(baseURL)}/Appointments/${appointmentId}
+          method: GET
+          label: retryAppointmentsId
+          headers:
+            StoreId: ${__P(StoreId)}
+            Remote_User: ${__P(Remote_User)}
+          assert:
+            - contains:
+              - 200
+              subject: http-code
+              regexp: true
+          assert-jsonpath:
+            - jsonpath: "$.StatusDescription"
+              validate: true
+              expect-null: false
+              expected-value: "Scheduled"
+              invert: true #This should be "Cancelled" at this point, thus the invert

@@ -1,0 +1,10 @@
+---
+  scenarios: 
+    run:
+      variables: #could be used as the primary source for data referenced in tests, instead of grabbing it dynamically from other requests
+        transportId: 1
+        startDate: 11/10/2015
+        endDate: 11/11/2015
+        make: Ford
+        testDate: 2015-11-10
+        storeID: #add id to reference

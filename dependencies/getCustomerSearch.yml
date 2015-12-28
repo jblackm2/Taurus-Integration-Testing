@@ -1,0 +1,170 @@
+---
+  scenarios:
+    run:
+      store-cache: false
+      requests:
+        - url: ${__P(baseURL)}/Customers/Search/?term=${customerFirstName}
+          method: GET
+          label: getCustomerSearch
+          headers:
+            StoreId: ${__P(StoreId)}
+            Remote_User: ${__P(Remote_User)}
+          assert:
+            - contains:
+              - 200
+              subject: http-code
+              regexp: true
+          assert-jsonpath:
+            - jsonpath: "$.[0]"
+              validate: false
+              expect-null: false
+              invert: false
+          assert-jsonpath:
+            - jsonpath: "$.[0].Id"
+              validate: false
+              expect-null: false
+              invert: false
+        - url: ${__P(baseURL)}/Customers/Search/?term=${customerLastName}
+          method: GET
+          headers:
+            StoreId: ${__P(StoreId)}
+            Remote_User: ${__P(Remote_User)}
+          assert:
+            - contains:
+              - 200
+              subject: http-code
+              regexp: true
+          assert-jsonpath:
+            - jsonpath: "$.[0]"
+              validate: false
+              expect-null: false
+              invert: false
+          assert-jsonpath:
+            - jsonpath: "$.[0].Id"
+              validate: false
+              expect-null: false
+              invert: false
+        - url: ${__P(baseURL)}/Customers/Search/?term=${customerId}%20${customerLastName}
+          method: GET
+          headers:
+            StoreId: ${__P(StoreId)}
+            Remote_User: ${__P(Remote_User)}
+          assert:
+            - contains:
+              - 200
+              subject: http-code
+              regexp: true
+          assert-jsonpath:
+            - jsonpath: "$.[0]"
+              validate: false
+              expect-null: false
+              invert: false
+          assert-jsonpath:
+            - jsonpath: "$.[0].Id"
+              validate: false
+              expect-null: false
+              invert: true  #This should return an empty list, if not, fail
+        - url: ${__P(baseURL)}/Customers/Search/?term=${customerEmail}
+          method: GET
+          headers:
+            StoreId: ${__P(StoreId)}
+            Remote_User: ${__P(Remote_User)}
+          assert:
+            - contains:
+              - 200
+              subject: http-code
+              regexp: true
+          assert-jsonpath:
+            - jsonpath: "$.[0].Email"
+              validate: true
+              expected-result: ${customerEmail}
+              expect-null: false
+              invert: false
+          assert-jsonpath:
+            - jsonpath: "$.[0]"
+              validate: false
+              expect-null: false
+              invert: false
+          assert-jsonpath:
+            - jsonpath: "$.[0].Id"
+              validate: false
+              expect-null: false
+              invert: false
+        - url: ${__P(baseURL)}/Customers/Search/?term=${customerHomePhone}
+          method: GET
+          headers:
+            StoreId: ${__P(StoreId)}
+            Remote_User: ${__P(Remote_User)}
+          assert:
+            - contains:
+              - 200
+              subject: http-code
+              regexp: true
+          assert-jsonpath:
+            - jsonpath: "$.[0].HomePhone"
+              validate: true
+              expected-result: ${customerHomePhone}
+              expect-null: false
+              invert: false
+          assert-jsonpath:
+            - jsonpath: "$.[0]"
+              validate: false
+              expect-null: false
+              invert: false
+          assert-jsonpath:
+            - jsonpath: "$.[0].Id"
+              validate: false
+              expect-null: false
+              invert: false
+        - url: ${__P(baseURL)}/Customers/Search/?term=${customerWorkPhone}
+          method: GET
+          headers:
+            StoreId: ${__P(StoreId)}
+            Remote_User: ${__P(Remote_User)}
+          assert:
+            - contains:
+              - 200
+              subject: http-code
+              regexp: true
+          assert-jsonpath:
+            - jsonpath: "$.[0].WorkPhone"
+              validate: true
+              expected-result: ${customerWorkPhone}
+              expect-null: false
+              invert: false
+          assert-jsonpath:
+            - jsonpath: "$.[0]"
+              validate: false
+              expect-null: false
+              invert: false
+          assert-jsonpath:
+            - jsonpath: "$.[0].Id"
+              validate: false
+              expect-null: false
+              invert: false
+        - url: ${__P(baseURL)}/Customers/Search/?term=${customerMobilePhone}
+          method: GET
+          headers:
+            StoreId: ${__P(StoreId)}
+            Remote_User: ${__P(Remote_User)}
+          assert:
+            - contains:
+              - 200
+              subject: http-code
+              regexp: true
+          assert-jsonpath:
+            - jsonpath: "$.[0].MobilePhone"
+              validate: true
+              expected-result: ${customerMobilePhone}
+              expect-null: false
+              invert: false
+          assert-jsonpath:
+            - jsonpath: "$.[0]"
+              validate: false
+              expect-null: false
+              invert: false
+          assert-jsonpath:
+            - jsonpath: "$.[0].Id"
+              validate: false
+              expect-null: false
+              invert: false

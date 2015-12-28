@@ -1,0 +1,49 @@
+---
+  scenarios:
+    run:
+      store-cache: false
+      requests:
+        - url: ${__P(baseURL)}/Customers/${customerId}
+          method: GET
+          label: getCustomerId
+          headers:
+            StoreId: ${__P(StoreId)}
+            Remote_User: ${__P(Remote_User)}
+          extract-jsonpath: #getting results from the response
+            customerFirstName:
+              jsonpath: $.FirstName
+              default: NOT_FOUND   
+            customerLastName:
+              jsonpath: $.LastName
+              default: NOT_FOUND
+            customerEmail:
+              jsonpath: $.Email
+              default: NOT_FOUND
+            customerHomePhone:
+              jsonpath: $.HomePhone
+              default: NOT_FOUND
+            customerWorkPhone:
+              jsonpath: $.WorkPhone
+              default: NOT_FOUND
+            customerMobilePhone:
+              jsonpath: $.MobilePhone
+              default: NOT_FOUND
+            createdDate:
+              jsonpath: $.CreatedDateTime
+              default: NOT_FOUND
+          assert:
+            - contains:
+              - 200
+              subject: http-code
+              regexp: true
+          assert-jsonpath:
+            - jsonpath: "$."
+              validate: false
+              expect-null: false
+              invert: false
+          assert-jsonpath:
+            - jsonpath: "$.Id"
+              validate: true
+              expected-value: ${customerId}
+              expect-null: false
+              invert: false

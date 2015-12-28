@@ -1,0 +1,17 @@
+{
+  "FirstName": "Test First Name",
+  "LastName": "Test Last Name",
+  "Address": {
+      "Street": "2525 SW 1st Ave",
+      "PostalCode": "97201",
+      "City": "Portland",
+      "State": "OR",
+      "Country": "USA"
+    },
+    "Email": "test1016230267@test.com",
+    "HomePhone": "5555555555",
+    "WorkPhone": "5555555554",
+    "MobilePhone": "5555555553",
+    "SmsOptIn": true,
+    "EmailOptIn": true,
+}

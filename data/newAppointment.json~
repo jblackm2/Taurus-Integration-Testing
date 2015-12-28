@@ -1,0 +1,62 @@
+{
+  "AppointmentDateTime": "${createdDate}",
+  "Customer": {
+    "Id": "${customerId}",
+    "ExternalId": "string",
+    "FirstName": "${customerFirstName}",
+    "LastName": "${customerLastName}",
+    "Address": {
+      "Street": "2525 SW 1st Ave",
+      "PostalCode": "97201",
+      "City": "Portland",
+      "State": "OR",
+      "Country": "USA"
+    },
+    "Email": "test1016230267@test.com",
+    "HomePhone": "5555555555",
+    "WorkPhone": "5555555554",
+    "MobilePhone": "5555555553",
+    "SmsOptIn": true,
+    "EmailOptIn": true,
+    "CreatedDateTime": "2015-11-12T15:20:37.628Z",
+    "ModifiedDateTime": "2015-11-12T15:20:37.628Z"
+  },
+  "Vehicle": {
+    "Id": "${vehicleId}",
+    "ExternalId": "string",
+    "CustomerId": "${customerId}",
+    "Vin": "1FTLP62W4XH128703",
+    "Year": 2012,
+	"Make": "Ford",
+	"Model": "F150",
+	"Mileage": 0,
+	"CurrentlyOwned": true,
+    "CreatedDateTime": "2015-11-12T15:20:37.628Z",
+    "ModifiedDateTime": "2015-11-12T15:20:37.628Z"
+  },
+  "AdvisorId": "d7c42b69-f8a9-4a3f-b7f0-980032572c1b",
+  "TechnicianId": "d7c42b69-f8a9-4a3f-b7f0-980032572c1c",
+  "Services": [
+    {
+      "Id": "a7c42b69-f8a9-4a3f-b7f0-980032572c1c",
+      "Service": {
+        "OperationCode": "99D",
+		"Name": "Test Trigger Op 2",
+		"Description": "Test Trigger Op 2",
+		"Comment": null,
+		"EstimatedDuration": null,
+		"Price": 550,
+		"LaborPrice": 300,
+		"PartsPrice": 200,
+		"MiscPrice": 50,
+		"DispatchCode": null,
+		"SkillCode": "A",
+		"LaborType": null
+      }
+    }
+  ],
+  "SmsOptIn": true,
+  "EmailOptIn": true,
+  "Notes": "string",
+  "Comment": "string"
+}

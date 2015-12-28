@@ -1,0 +1,18 @@
+---
+  scenarios:
+    run:
+      store-cache: false
+      requests:
+        - url: ${__P(baseURL)}/Appointments/${appointmentId}
+          method: PUT
+          label: putAppointmentId
+          body-file: ./data/editAppointment.json
+          headers:
+            StoreId: ${__P(StoreId)}
+            Remote_User: ${__P(Remote_User)}
+            Content-Type: "application/json; charset=utf-8"
+          assert:
+            - contains:
+              - 200
+              subject: http-code
+              regexp: true

@@ -1,0 +1,43 @@
+---
+  scenarios:
+    run:
+      store-cache: false
+      requests:
+        - url: ${__P(baseURL)}/Appointments/${appointmentId}
+          method: GET
+          label: getAppointmentsId
+          headers:
+            StoreId: ${__P(StoreId)}
+            Remote_User: ${__P(Remote_User)}
+            Content-Type: "application/json; charset=utf-8"
+          assert:
+            - contains:
+              - 200
+              subject: http-code
+              regexp: true
+          assert-jsonpath:
+            - jsonpath: "$.Id"
+              validate: false
+              expect-null: false
+              invert: false
+          assert-jsonpath:
+            - jsonpath: "$.Customer.Id"
+              validate: true
+              expected-value: "${customerId}"
+              expect-null: false
+              invert: false
+          assert-jsonpath:
+            - jsonpath: "$.Vehicle.Id"
+              validate: true
+              expected-value: "${vehicleId}"
+              expect-null: false
+              invert: false
+          assert-jsonpath:
+            - jsonpath: "$.Services[0].Id"
+              validate: false
+              expect-null: false
+              invert: false
+          extract-jsonpath:
+            appointmentDateTime: #getting a result from the response
+              jsonpath: $.AppointmentDateTime
+              default: NOT_FOUND

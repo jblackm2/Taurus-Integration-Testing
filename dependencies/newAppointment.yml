@@ -1,0 +1,22 @@
+---
+  scenarios:
+    run:
+      store-cache: false
+      requests:
+        - url: ${__P(baseURL)}/Appointments
+          method: POST
+          label: NewAppointment
+          body-file: ./data/newAppointment.json
+          headers:
+            StoreId: ${__P(StoreId)}
+            Remote_User: ${__P(Remote_User)}
+            Content-Type: "application/json; charset=utf-8"
+          extract-jsonpath: #getting a result from the response
+            appointmentId:
+              jsonpath: $
+              default: NOT_FOUND
+          assert:
+            - contains:
+              - 201
+              subject: http-code
+              regexp: true

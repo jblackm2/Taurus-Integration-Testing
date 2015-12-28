@@ -1,0 +1,32 @@
+---
+  scenarios:
+    run:
+      store-cache: false
+      requests:
+        - url: ${__P(baseURL)}/Customers/${customerId}/Appointments
+          method: GET
+          label: getCustIdAppointments
+          headers:
+            StoreId: ${__P(StoreId)}
+            Remote_User: ${__P(Remote_User)}
+          assert:
+            - contains:
+              - 200
+              subject: http-code
+              regexp: true
+          assert-jsonpath:
+            - jsonpath: "$.[0]"
+              validate: false
+              expect-null: false
+              invert: false
+          assert-jsonpath:
+            - jsonpath: "$.[0].Customer.Id"
+              validate: true
+              expected-value: ${customerId}
+              expect-null: false
+              invert: false
+          assert:
+            - contains: 
+              - ${vehicleId}
+              subject: body
+              regexp: true
